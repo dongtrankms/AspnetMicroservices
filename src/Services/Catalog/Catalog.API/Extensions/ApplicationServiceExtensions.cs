@@ -2,7 +2,7 @@
 using Catalog.API.Repositories;
 using Microsoft.OpenApi.Models;
 
-namespace Catalog.API.Extension
+namespace Catalog.API.Extensions
 {
     public static class ApplicationServiceExtensions
     {
