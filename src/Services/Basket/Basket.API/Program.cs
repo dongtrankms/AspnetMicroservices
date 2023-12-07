@@ -6,7 +6,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddStackExchangeRedisCache(options =>
     {
-        options.Configuration = "localhost:6379";
+        options.Configuration = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString");
     });
 
 var app = builder.Build();
