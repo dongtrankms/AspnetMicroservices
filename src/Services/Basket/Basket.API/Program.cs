@@ -1,4 +1,5 @@
 using Basket.API.Repositories;
+using MassTransit;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,11 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
+
 builder.Services.AddStackExchangeRedisCache(options =>
     {
         options.Configuration = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString");
     });
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddMassTransit(config =>
+    {
+        config.UsingRabbitMq((ctx, cfg) => {
+            cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+        });
+    });
 
 builder.Services.AddSwaggerGen(c =>
 {
