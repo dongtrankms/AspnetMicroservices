@@ -8,11 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
 
+// Redis
 builder.Services.AddStackExchangeRedisCache(options =>
     {
         options.Configuration = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString");
     });
+
+// General 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
+// MassTransit - RabbitMq
 builder.Services.AddMassTransit(config =>
     {
         config.UsingRabbitMq((ctx, cfg) => {
