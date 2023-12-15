@@ -22,6 +22,7 @@ services:
       - POSTGRES_PASSWORD=admin1234
       - POSTGRES_DB=DiscountDb
     restart: always
+    command: ["postgres", "-c", "log_statement=all"]
     ports:
         - "5432:5432"
     volumes:
