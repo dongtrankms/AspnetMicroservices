@@ -13,7 +13,9 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 app.UseRouting();
+#pragma warning disable ASP0014
 app.UseEndpoints(endpoints => endpoints.MapControllers());
+#pragma warning restore ASP0014
 
 await app.UseOcelot();
 
