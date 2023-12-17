@@ -87,11 +87,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label asp-for="Order.EmailAddress" for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input asp-for="Order.EmailAddress" type="email" class="form-control" id="email" placeholder="you@example.com">
-                    <div class="invalid-feedback">
-                        Please enter a valid email address for shipping updates.
-                    </div>
+                    <label asp-for="Order.EmailAddress" for="email">Email</label>
+                    <input required asp-for="Order.EmailAddress" type="email" class="form-control" id="email" placeholder="you@example.com">
                 </div>
 
                 <div class="mb-3">
